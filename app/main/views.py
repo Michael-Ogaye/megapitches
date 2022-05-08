@@ -4,8 +4,8 @@ from . import main
 from flask_login import login_required,current_user
 from ..models import User,Pitch,Comment,Upvote,Downvote
 from .forms import UpdateProfile,PitchForm,CommentForm
-from .. import db,photos
-
+from .. import db
+# ,photos
 @main.route('/')
 def index():
     pitches = Pitch.query.all()
@@ -69,16 +69,16 @@ def updateprofile(name):
     return render_template('profile/update.html',form =form)
 
 
-@main.route('/user/<name>/update/pic',methods= ['POST','GET'])
-@login_required
-def update_pic(name):
-    user = User.query.filter_by(username = name).first()
-    if 'photo' in request.files:
-        filename = photos.save(request.files['photo'])
-        path = f'photos/{filename}'
-        user.profile_pic_path = path
-        db.session.commit()
-    return redirect(url_for('main.profile',name=name))
+# @main.route('/user/<name>/update/pic',methods= ['POST','GET'])
+# @login_required
+# def update_pic(name):
+#     user = User.query.filter_by(username = name).first()
+#     if 'photo' in request.files:
+#         filename = photos.save(request.files['photo'])
+#         path = f'photos/{filename}'
+#         user.profile_pic_path = path
+#         db.session.commit()
+#     return redirect(url_for('main.profile',name=name))
 
 @main.route('/like/<int:id>',methods = ['POST','GET'])
 @login_required
