@@ -1,3 +1,4 @@
+from crypt import methods
 from flask import render_template, redirect, url_for,abort,request
 from . import main
 from flask_login import login_required,current_user
@@ -44,7 +45,7 @@ def comment(pitch_id):
     return render_template('comment.html', form =form, pitch = pitch,all_comments=all_comments)
 
 
-@main.route('/user/<name>')
+@main.route('/user/<name>', methods=['GET','POST'])
 def profile(name):
     user = User.query.filter_by(username = name).first()
     user_id = current_user._get_current_object().id
@@ -68,7 +69,7 @@ def updateprofile(name):
     return render_template('profile/update.html',form =form)
 
 
-@main.route('/user/<name>/update/pic',methods= ['POST'])
+@main.route('/user/<name>/update/pic',methods= ['POST','GET'])
 @login_required
 def update_pic(name):
     user = User.query.filter_by(username = name).first()
