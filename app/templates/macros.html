@@ -3,8 +3,8 @@
   <div class="row">
     {% if piches %} {% for category in piches %}
     <div class="col-md-4">
-      <div class="thumbnail" id="carded">
-        <h5 class="card-header">{{category.title}}</h5>
+      <div class="thumbnail border rounded" id="carded">
+        <h6 class="card-header text-center">{{category.title}}</h6>
         <div class="card-body">
           <p>{{category.post}}</p>
           <p class="text-center">Category: {{category.category}}</p>
@@ -17,15 +17,15 @@
               <a href="{{url_for('main.like',id = category.id)}}"
                 ><i
                   class="fa fa-thumbs-up"
-                  style="font-size: 18px; color: green"
+                  style="font-size: 18px; color: blue"
                 ></i
               ></a>
               {{category.upvote.count()}}</span
             >
 
-            <span class="foot">
+            <span class="foot ms-3">
               <a href="{{url_for('main.dislike',id = category.id)}}">
-                <i class="fa fa-thumbs-down" style="color: red"></i>
+                <i class="fa fa-thumbs-down" style="color:grey"></i>
                 {{category.downvote.count()}}</a
               ></span
             >
@@ -33,9 +33,9 @@
 
           <a
             href="{{url_for('main.comment',pitch_id = category.id)}}"
-            class="btn btn-info btn-sm"
+            class="btn btn-outline-warning btn-sm mt-3 d-block"
           >
-            Comment</a
+            Leave Comment</a
           >
         </div>
       </div>
