@@ -5,9 +5,10 @@
       <!-- Navbar brand -->
       <a class="navbar-brand me-2" href="https://mdbgo.com/">
         <img
-          src="{{url_for('static' filename='images/megap.png')}}"
+          src="{{url_for('static', filename='images/megap.png')}}"
           height="16"
-          alt="MDB Logo"
+          width="16"
+          alt="Mgp"
           loading="lazy"
           style="margin-top: -1px;"
         />
@@ -36,10 +37,12 @@
         <a class="nav-link dropdown-toggle" style= 'margin-right:30px' data-toggle="dropdown"
           aria-haspopup="true" aria-expanded="false">
           <i class="fas fa-user"></i>&nbsp;<strong>{{current_user.username}}</strong> </a>
-        <div class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
+        <div
+         class="dropdown-menu dropdown-menu-right dropdown-info" aria-labelledby="navbarDropdownMenuLink-4">
           <a class="dropdown-item" href="{{url_for('main.profile',name=current_user.username)}}"><i class="far fa-user"></i>&nbsp; My account</a>
           <a class="dropdown-item" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log out</a>
         </div>
+        <a class="dropdown-item" href="{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i>&nbsp; Log out</a>
         </li>
         {% else %}
         <li class="nav-item">
