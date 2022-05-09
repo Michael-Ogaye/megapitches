@@ -1,38 +1,38 @@
 {% macro display(piches) %}
 <div class="container-fluid">
   <div class="row">
-    {% if piches %} {% for category in piches %}
+    {% if piches %} {% for pitch in piches %}
     <div class="col-md-4">
       <div class="thumbnail border rounded" id="carded">
-        <h6 class="card-header text-center">{{category.title}}</h6>
+        <h6 class="card-header text-center">{{pitch.title}}</h6>
         <div class="card-body">
-          <p>{{category.post}}</p>
-          <p class="text-center">Category: {{category.category}}</p>
+          <p>{{pitch.post}}</p>
+          <p class="text-center">Category: {{pitch.category}}</p>
           <footer class="blockquote-footer text-center">
-            Posted by: {{category.user.username}}
+            Posted by: {{pitch.user.username}}
           </footer>
           <div>
-            <span class="foot">{{category.comment.count()}} Comments</span>
+            <span class="foot">{{pitch.comment.count()}} Comments</span>
             <span class="foot">
-              <a href="{{url_for('main.like',id = category.id)}}"
+              <a href="{{url_for('main.like',id = pitch.id)}}"
                 ><i
                   class="fa fa-thumbs-up"
                   style="font-size: 18px; color: blue"
                 ></i
               ></a>
-              {{category.upvote.count()}}</span
+              {{pitch.upvote.count()}}</span
             >
 
             <span class="foot ms-3">
-              <a href="{{url_for('main.dislike',id = category.id)}}">
+              <a href="{{url_for('main.dislike',id = pitch.id)}}">
                 <i class="fa fa-thumbs-down" style="color:grey"></i>
-                {{category.downvote.count()}}</a
+                {{pitch.downvote.count()}}</a
               ></span
             >
           </div>
 
           <a
-            href="{{url_for('main.comment',pitch_id = category.id)}}"
+            href="{{url_for('main.comment',pitch_id = pitch.id)}}"
             class="btn btn-outline-warning btn-sm mt-3 d-block"
           >
             Leave Comment</a
@@ -44,7 +44,7 @@
     {% endfor %} {% else %}
     <div class="card w-90 mb-3">
       <div class="card-body">
-        <p class="card-title">Category Has 0 posts</p>
+        <p class="card-title">Nothing posted yet</p>
       </div>
     </div>
     {% endif %}
