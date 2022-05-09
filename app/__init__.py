@@ -5,14 +5,17 @@ from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
 from flask_sqlalchemy import SQLAlchemy
 # from flask_uploads import IMAGES, UploadSet,configure_uploads
+from flask_migrate import Migrate, MigrateCommand
 
 
-db = SQLAlchemy()
-mail = Mail()
-bootstap = Bootstrap()
 login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
+db = SQLAlchemy()
+from app.models import User
+mail = Mail()
+bootstap = Bootstrap()
+
 # photos = UploadSet('photos',IMAGES)
 
 
@@ -31,6 +34,7 @@ def create_app(config_name):
     bootstap.init_app(app)
     # configure_uploads(app,photos)
     mail.init_app(app)
+    migrate = Migrate(app,db)
     
 
 
